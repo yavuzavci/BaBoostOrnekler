@@ -110,18 +110,43 @@ public class Question47 {
 		Scanner scanner = new Scanner(System.in);
 		String sayi = "";
 		int sonuc = 0;
+		int sayac = 0;
+		do {
+			System.out.println("Lütfen bir sayı giriniz");
+			sayi = scanner.nextLine();
+			sayac++;
+			if(!sayi.equals("=")) {				
+				if(sayac == 1)
+					sonuc = Integer.parseInt(sayi);
+				else
+					sonuc *= Integer.parseInt(sayi);						
+			}				
+			
+		} while (!sayi.equals("="));
 		
 		
-		
-		return 0;
+		return sonuc;
 	}
 	public static double bol() {
 		Scanner scanner = new Scanner(System.in);
 		String sayi = "";
 		double sonuc = 0;
-		
-		
-		
+		int sayac = 0;
+		do {
+			System.out.println("Lütfen bir sayı giriniz");
+			sayi = scanner.nextLine();
+			if(sayi.equals("0"))
+				System.out.println("0 bölme işlemini tanımsız yapar. Başka bir sayı girin.");
+			else {
+				sayac++;
+				if(!sayi.equals("=")) {					
+					if(sayac == 1)
+						sonuc = Double.parseDouble(sayi);					
+					else
+						sonuc /= Double.parseDouble(sayi);												
+				}
+			}
+		} while (!sayi.equals("="));		
 		
 		return sonuc;
 	}
