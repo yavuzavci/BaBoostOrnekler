@@ -135,17 +135,16 @@ public class Question47 {
 		do {
 			System.out.println("Lütfen bir sayı giriniz");
 			sayi = scanner.nextLine();
-			if(sayi.equals("0"))
-				System.out.println("0 bölme işlemini tanımsız yapar. Başka bir sayı girin.");
-			else {
-				sayac++;
-				if(!sayi.equals("=")) {					
-					if(sayac == 1)
-						sonuc = Double.parseDouble(sayi);					
-					else
-						sonuc /= Double.parseDouble(sayi);												
-				}
+			sayac++;
+			if(!sayi.equals("=")) {
+				if(sayac == 1)
+					sonuc = Double.parseDouble(sayi);
+				else if(sayi.equals("0"))
+					System.out.println("0 bölme işlemini tanımsız yapar. Başka bir sayı girin.");
+				else
+					sonuc /= Double.parseDouble(sayi);
 			}
+			
 		} while (!sayi.equals("="));		
 		
 		return sonuc;
