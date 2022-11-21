@@ -18,9 +18,8 @@ public class Test {
 		SehirDatabase database = new SehirDatabase();
 		
 //		String[] iller = database.iller;
-		String[] iller;
-		
-//		ileBaşlayanİller(iller);
+				
+//		ileBaslayanIller(iller);
 //		illeriPlakalariylaYazdir(iller);
 //		String plaka = plakaBul(iller);
 //		if(Integer.valueOf(plaka) <= 0)
@@ -28,7 +27,7 @@ public class Test {
 //		else
 //			System.out.println("Plaka..: " + plaka);
 //		
-//		ileBaşlayanİller(database.iller);
+//		ileBaslayanIller(database.iller);
 //		harfSilerekYazdir(iller);
 		
 		/* buradan sonraki kısımlar 2022-11-21 uygulama dersi sonunda
@@ -37,17 +36,18 @@ public class Test {
 		 * tersi durumda yorum dışı bırakın.
 		 */
 		
+		String[] iller;
 		// 5. method
 //		iller = sesliHarfleriSil(database.iller);
 //		illeriYazdir(iller);
 		// 6. method
-//		bIleBaşlayanIller(iller);		
+//		bIleBaslayanIller(iller);		
 		// 7. method
 		iller = database.iller;
 		illeriSecerekYazdir(iller);
 	}
 	
-	public static void bIleBaşlayanIller(String[] iller) {
+	public static void bIleBaslayanIller(String[] iller) {
 		int bSayaci = 1;
 		for (int i = 0; i < iller.length; i++) {
 			if(iller[i].startsWith("B")) {
@@ -58,7 +58,7 @@ public class Test {
 		}
 	}
 	
-	public static void ileBaşlayanİller(String[] dizi) {
+	public static void ileBaslayanIller(String[] dizi) {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Lütfen bir harf girin");
 		String harf = scanner.nextLine();
