@@ -37,8 +37,11 @@ public class Test {
 		 */
 		
 		String[] iller;
-		// 5. method
+		// 4. method
 //		iller = sesliHarfleriSil(database.iller);
+//		illeriYazdir(iller);
+		// 5. method
+//		iller = illereNoktaEkle(database.iller);
 //		illeriYazdir(iller);
 		// 6. method
 //		bIleBaslayanIller(iller);		
@@ -67,6 +70,15 @@ public class Test {
 			if(dizi[i].startsWith(harf.toUpperCase().substring(0,1)))
 				System.out.println(dizi[i]);
 		}
+	}
+	
+	public static String[] illereNoktaEkle(String[] iller) {
+		String[] yeniDizi = iller;
+		for (int i = 0; i < yeniDizi.length; i++) {
+			yeniDizi[i] = yeniDizi[i].substring(0,3) + "...";
+		}
+		
+		return yeniDizi;
 	}
 	
 	public static void illeriSecerekYazdir(String[] iller) {
