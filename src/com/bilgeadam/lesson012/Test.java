@@ -73,8 +73,9 @@ public class Test {
 	}
 	
 	public static String[] illereNoktaEkle(String[] iller) {
-		String[] yeniDizi = iller;
+		String[] yeniDizi = new String[iller.length];
 		for (int i = 0; i < yeniDizi.length; i++) {
+			yeniDizi[i] = iller[i];			
 			if(yeniDizi[i].length() < 3)
 				yeniDizi[i] = yeniDizi[i].substring(0,2) + "...";
 			else
