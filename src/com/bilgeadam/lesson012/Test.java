@@ -41,7 +41,7 @@ public class Test {
 //		iller = sesliHarfleriSil(database.iller);
 //		illeriYazdir(iller);
 		// 5. method
-//		iller = illereNoktaEkle(database.iller);
+//		iller = illereNoktaEkle(iller);
 //		illeriYazdir(iller);
 		// 6. method
 //		bIleBaslayanIller(iller);		
