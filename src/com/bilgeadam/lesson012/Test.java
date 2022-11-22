@@ -129,9 +129,9 @@ public class Test {
 	
 	public static String[] sesliHarfleriSil(String[] iller) {
 		String[] sesliHarfler = { "a", "e", "ı", "i", "o", "ö", "u", "ü" };
-		String[] yeniDizi = iller;
+		String[] yeniDizi = new String[iller.length];
 		for (int i = 0; i < iller.length; i++) {	
-			
+			yeniDizi[i] = iller[i];
 			for (int j = 0; j < sesliHarfler.length; j++) {
 				if(iller[i].contains(sesliHarfler[j])) {
 					yeniDizi[i] = yeniDizi[i].replace(sesliHarfler[j],"");
