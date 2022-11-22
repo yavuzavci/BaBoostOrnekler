@@ -95,6 +95,7 @@ public class Test {
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Plakasını bulmak istediğiniz ili girin: ");
 		String il = scanner.nextLine();
+		scanner.close();
 		String sonuc="";
 		int plaka = 0;
 		for (int i = 0; i < dizi.length; i++) {
@@ -112,18 +113,17 @@ public class Test {
 	}
 	
 	public static String[] sesliHarfleriSil(String[] iller) {
-		String[] sesliHarfler = { "a", "e", "ı", "i", "o", "ö", "u", "ü" }; 
-		for (int i = 0; i < iller.length; i++) {
-			String sonuc = "";			
-				
+		String[] sesliHarfler = { "a", "e", "ı", "i", "o", "ö", "u", "ü" };
+		String[] yeniDizi = iller;
+		for (int i = 0; i < iller.length; i++) {	
+			
 			for (int j = 0; j < sesliHarfler.length; j++) {
 				if(iller[i].contains(sesliHarfler[j])) {
-					iller[i] = iller[i].substring(0,1) + iller[i].substring(1)
-							.replace(sesliHarfler[j],"");
+					yeniDizi[i] = yeniDizi[i].replace(sesliHarfler[j],"");
 				}												
 			}			
 		}
 		
-		return iller;
+		return yeniDizi;
 	}
 }
