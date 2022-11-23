@@ -14,6 +14,6 @@ public class Kullanici {
 	String isim;
 	String email;
 	String sifre;
-	static int id = 1;
+	int id;
 	
 }
