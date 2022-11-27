@@ -58,6 +58,9 @@ public class Uygulama {
 			case 5:
 				kitaplariListele(kutuphane.kitapListesi);
 				break;
+			case 6:
+				yazarlariListele(kutuphane.yazarListesi);
+				break;
 			case 0:
 				System.out.println("Çıkış yapılıyor.....");
 				break;
@@ -74,4 +77,12 @@ public class Uygulama {
 				System.out.println(kitapListesi[i].isim + "-" +kitapListesi[i].yazar.isim);
 		}
 	}
+	
+	public static void yazarlariListele(Yazar[] yazarListesi) {
+		for (int i = 0; i < yazarListesi.length; i++) {
+			if(yazarListesi[i] != null)
+				System.out.println(yazarListesi[i].isim);
+		}
+	}
+	
 }
