@@ -19,7 +19,13 @@ public class Memur extends Calisan implements IOgrenciIsleri{
 	}
 
 	@Override
-	public boolean ogrenciKaydiSil(String ogrenciNo) {
+	public boolean ogrenciKaydiSil(String ogrenciNo) {		
+		for (int i = 0; i < Okul.ogrenciListesi.size(); i++) {
+			if(Okul.ogrenciListesi.get(i).getOkulNo().equals(ogrenciNo)) {
+				Okul.ogrenciListesi.remove(i);
+				return true;
+			}
+		}
 		
 		return false;
 	}
@@ -75,8 +81,17 @@ public class Memur extends Calisan implements IOgrenciIsleri{
 				System.out.println(ogrenci.getIsim() + " " + ogrenci.getSoyisim()  
 									+ " adlı öğrenci başarıyla sisteme eklendi.");
 				break;
-			case 2: 
-				//ogrenciKaydiSil();
+			case 2:
+				if(Okul.ogrenciListesi.isEmpty())
+					System.err.println("HATA: Okula kayıtlı öğrenci yoktur. Silme işlemi başarısız.");
+				else {
+					String okulNo = OysUtility.stringDegerAlma(
+							"Lütfen silmek istediğiniz öğrencinin okul numarasını giriniz");
+					if(ogrenciKaydiSil(okulNo))
+						System.out.println(okulNo + " numaralı öğrencinin kaydı sistemden başarıyla silindi.");
+					else
+						System.err.println("HATA: " + okulNo + " numaralı öğrenci sistemde bulunamadı.");
+				}
 				break;
 			case 3: 
 				//bilgilendirmeYap();
