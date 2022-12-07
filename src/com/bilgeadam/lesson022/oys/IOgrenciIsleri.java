@@ -6,5 +6,6 @@ public interface IOgrenciIsleri {
 	boolean ogrenciKaydiSil(String ogrenciNo);
 	void bilgilendirmeYap(Ogrenci ogrenci);
 	boolean dersKaydiOnayla(Ders ders, Ogrenci ogrenci);
-	
+	void ogretmenlerListesi();
+	void ogrencilerListesi();
 }

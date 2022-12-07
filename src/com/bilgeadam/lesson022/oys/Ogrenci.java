@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Ogrenci extends Kisi{
 	
 	private String okulNo;
+	private static int index;
 	private double notOrt;
 	private ArrayList<Ders> dersListesi;
 	
@@ -12,11 +13,13 @@ public class Ogrenci extends Kisi{
 	public Ogrenci(String isim, String soyisim, String adres) {
 		super(isim, soyisim, adres);
 		this.dersListesi = new ArrayList<Ders>();
+		okulNoAta();
 	}
 
 	public Ogrenci(String isim, String soyisim) {
 		super(isim, soyisim);
 		this.dersListesi = new ArrayList<Ders>();
+		okulNoAta();
 	}	
 	
 	public String getOkulNo() {
@@ -37,6 +40,24 @@ public class Ogrenci extends Kisi{
 
 	public ArrayList<Ders> getDersListesi() {
 		return dersListesi;
-	}	
+	}
+	
+	@Override
+	public void menu() {
+		super.menu();
+		System.out.println("1- Ders Kaydı Yap");
+		System.out.println("2- Not ortalaması görüntüle");
+		System.out.println("3- Aldığım dersleri listele");
+	}
+
+	@Override
+	public String toString() {
+		return "Ogrenci [okulNo=" + okulNo + ", notOrt=" + notOrt + ", getIsim()=" + getIsim() + ", getSoyisim()="
+				+ getSoyisim() + ", getAdres()=" + getAdres() + "]";
+	}
+	
+	public void okulNoAta() {
+		
+	}
 	
 }

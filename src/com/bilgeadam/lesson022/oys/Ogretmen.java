@@ -27,6 +27,13 @@ public class Ogretmen extends Calisan {
 
 	public void setNobetciMi(boolean nobetciMi) {
 		this.nobetciMi = nobetciMi;
-	}	
+	}
+	
+	@Override
+	public void menu() {
+		super.menu();
+		System.out.println("1- Girdiğim dersleri listele");
+		System.out.println("2- Nöbetçilik durumu sorgula");
+	}
 	
 }

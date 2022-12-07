@@ -43,6 +43,10 @@ public class Kisi {
 	
 	public void setAdres(String adres) {
 		this.adres = adres;
-	}	
+	}
+	
+	public void menu() {
+		System.out.println(isim + " O.Y.S. ye hoşgeldiniz");
+	}
 	
 }
