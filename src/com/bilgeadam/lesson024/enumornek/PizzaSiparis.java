@@ -37,8 +37,8 @@ public class PizzaSiparis {
 	}
 	
 	public static EBoy boySec() {
-		for (EHamurTipi tip : EHamurTipi.values()) {
-			System.out.println((tip.ordinal() + 1)+ "-" + tip);
+		for (EBoy boy  : EBoy.values()) {
+			System.out.println((boy.ordinal() + 1)+ "-" + boy);
 		}
 		int secim = Utility.intDegerAlma("Lütfen Pizza Boyunu Seçin");
 		switch(secim) {
@@ -50,8 +50,8 @@ public class PizzaSiparis {
 	}
 	
 	public static ETur turSec() {
-		for (EHamurTipi tip : EHamurTipi.values()) {
-			System.out.println((tip.ordinal() + 1)+ "-" + tip);
+		for (ETur tur : ETur.values()) {
+			System.out.println((tur.ordinal() + 1)+ "-" + tur);
 		}
 		int secim = Utility.intDegerAlma("Lütfen Pizza Türü Seçin");
 		switch(secim) {
