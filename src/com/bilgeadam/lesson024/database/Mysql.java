@@ -42,7 +42,7 @@ public class Mysql extends Database{
 	
 	@Override
 	public void login() {
-		System.out.println("Veri tabanına başarıyla giriş yapıldı.");
+		System.out.println("Mysql veri tabanına başarıyla giriş yapıldı.");
 	}
 
 }
