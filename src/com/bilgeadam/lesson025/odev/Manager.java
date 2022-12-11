@@ -3,7 +3,6 @@ package com.bilgeadam.lesson025.odev;
 import static com.bilgeadam.lesson025.odev.Utility.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Manager {

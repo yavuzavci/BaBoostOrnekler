@@ -10,10 +10,6 @@ public class Utility {
 	
 	public static final Random random = new Random();
 	public static final EGunler[] GUNLER = EGunler.values();
-	public static final int CORBASAYISI = ECorbalar.values().length;
-	public static final int ICECEKSAYISI = EIcecekler.values().length;
-	public static final int TATLISAYISI = ETatlilar.values().length;
-	public static final int YEMEKSAYISI = EYemekler.values().length;
 	private static final List<ECorbalar> corbalar = new ArrayList<>(Arrays.asList(ECorbalar.values()));
 	private static final List<EIcecekler> icecekler = new ArrayList<>(Arrays.asList(EIcecekler.values()));
 	private static final List<ETatlilar> tatlilar = new ArrayList<>(Arrays.asList(ETatlilar.values()));
