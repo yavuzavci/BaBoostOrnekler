@@ -1,4 +1,4 @@
-package com.bilgeadam.lesson025.sepet;
+package com.bilgeadam.lesson025.odev;
 /*
 *
 * Menu diye bir sınıfımız olacak
@@ -22,5 +22,11 @@ package com.bilgeadam.lesson025.sepet;
 *
 */
 public class Odev {
-
+	
+	public static void main(String[] args) {
+		Manager manager = new Manager();
+		manager.haftalikMenuOlustur();
+		manager.haftalikMenuyuYazdir();
+	}
+	
 }
