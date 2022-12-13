@@ -80,4 +80,18 @@ public class Defans extends AktifFutbolcu {
 				+ bonus);
 	}
 
+	@Override
+	public int golSkoruHesapla(int kurtaris) {
+		int bonus = (int) (random.nextInt(2, 5) * this.getDogalForm() * 0.075);
+		return (int) (this.getYetenek() * 0.3
+				+ this.getSut() * 0.2
+				+ this.getKararlilik() * 0.1
+				+ this.getSans() * 0.1
+				+ this.kafa * 0.1
+				+ this.sicrama * 0.1
+				+ this.getDogalForm() * 0.1				
+				+ bonus
+				- kurtaris);
+	}
+
 }

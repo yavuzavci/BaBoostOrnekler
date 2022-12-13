@@ -38,4 +38,11 @@ public class Kaleci extends Futbolcu {
 		return random.nextInt(KALECIMINARALIK, KALECIMAXARALIK);
 	}
 	
+	public int kurtarisSkoruHesapla() {
+		int bonus = (int)(random.nextInt(1,5) * this.getDogalForm() * 0.025);
+		return (int)(this.kurtaris * 0.2
+				+ this.getKararlilik() * 0.1
+				+ bonus);
+	}
+	
 }

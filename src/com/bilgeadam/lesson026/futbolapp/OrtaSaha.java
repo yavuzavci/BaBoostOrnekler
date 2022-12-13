@@ -83,13 +83,29 @@ public class OrtaSaha extends AktifFutbolcu {
 	@Override
 	public int pasSkoruHesapla() {
 		int bonus = random.nextInt(1, 8);
-		return (int) (this.getPas() * 0.2 
-				+ this.getYetenek() * 0.2
-				+ this.ozelYetenek * 0.2
+		return (int) (this.getYetenek() * 0.3
+				+ this.getSut() * 0.2
+				+ this.getKararlilik() * 0.1
+				+ this.getSans() * 0.1
+				+ this.getPas() * 0.2
 				+ this.getDayaniklilik() * 0.1
 				+ this.getDogalForm() * 0.1
-				+ this.getSans() * 0.1
+				
 				+ bonus);
+	}
+
+	@Override
+	public int golSkoruHesapla(int kurtaris) {
+		int bonus = (int) (random.nextInt(1, 6) * this.getDogalForm() * 0.075);
+		return (int) (this.getYetenek() * 0.2
+				+ this.ozelYetenek * 0.2
+				+ this.getSut() * 0.2
+				+ this.getIlkDokunus() * 0.1
+				+ this.getKararlilik() * 0.1
+				+ this.getSans() * 0.1
+				+ this.getDogalForm() * 0.1				
+				+ bonus
+				- kurtaris);
 	}
 	
 }

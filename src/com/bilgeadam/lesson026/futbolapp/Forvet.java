@@ -80,5 +80,21 @@ public class Forvet extends AktifFutbolcu {
 				+ this.getSans() * 0.1
 				+ bonus);
 	}
+
+	@Override
+	public int golSkoruHesapla(int kurtaris) {
+		int bonus = (int) (random.nextInt(1, 5) * this.getDogalForm() * 0.075);
+		return (int) (this.getYetenek() * 0.2
+				+ this.ozelYetenek * 0.2
+				+ this.getSut() * 0.1
+				+ this.getIlkDokunus() * 0.1
+				+ this.getKararlilik() * 0.1
+				+ this.getSans() * 0.1
+				+ this.kafa * 0.1
+				+ this.bitiricilik * 0.2
+				+ this.getDogalForm() * 0.1
+				+ bonus
+				- kurtaris);
+	}
 	
 }

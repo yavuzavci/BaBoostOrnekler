@@ -7,17 +7,22 @@ public abstract class AktifFutbolcu extends Futbolcu{
 	}
 	
 	public abstract int pasSkoruHesapla();
+	public abstract int golSkoruHesapla(int kurtaris);
 	
 	public boolean pasVer() {
 		int skor = this.pasSkoruHesapla();
-		if(skor > 65) {
-			System.out.println("Başarılı Pas");
+		if(skor > 68)
+			return true;		
+		else
+			return false;
+		
+	}
+	public boolean golVurusu(int kurtaris) {
+		int skor = this.golSkoruHesapla(kurtaris);
+		if(skor > 68) 
 			return true;
-		}
-		else{
-			System.out.println("Başarılı Pas");
-			return true;
-		}
+		else
+			return false;		
 	}
 
 }
