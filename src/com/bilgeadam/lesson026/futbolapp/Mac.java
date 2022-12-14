@@ -97,6 +97,7 @@ public class Mac {
 				takim = takimDegistir(takim);
 				System.out.println("Top " + takim.getAd() + " takımına geçti !!! ");
 				i = -1;
+				index = passKontrol(12);
 				Thread.sleep(1500);
 			}
 			
@@ -115,17 +116,19 @@ public class Mac {
 			System.out.println("Gol gol gol");
 			int takimIndex = takimlar.indexOf(takim);
 			macSkoru[takimIndex]++;
-			System.out.println(futbolcu.getFormaNo() + " nolu futbolcu golü atıyor.....!!!");
+			System.out.println(takim.getAd() + " adlı takımdan " + futbolcu.getFormaNo() + " nolu futbolcu golü atıyor.....!!!");
 			skorGoster();
 		}
 		else {
-			System.out.println(futbolcu.getFormaNo() + " nolu futbolcu golü kaçırdı.....!!!");
+			System.out.println(takim.getAd() + " adlı takımdan " + futbolcu.getFormaNo() + " nolu futbolcu golü kaçırdı.....!!!");
 		}
 	}
 	
 	public void skorGoster() {
 		System.out.println("Maç skoru");
+		System.out.println("========================================");
 		System.out.println(takimlar.get(0).getAd() + ": " + macSkoru[0] + " - " + takimlar.get(1).getAd() + ": " + macSkoru[1]);
+		System.out.println("========================================");
 	}
 	
 	public Takim yaziTura() {
@@ -150,9 +153,11 @@ public class Mac {
 		while(sure > System.currentTimeMillis()) {
 			if(sure == System.currentTimeMillis()) break;
 			oyna(takim);
+			takim = takimDegistir(takim);
 			System.out.println((sure - System.currentTimeMillis()) / 1000 + " saniye kaldı");			
 		}
-		System.out.println("Maç sonu.");
+		System.out.println("-------------------------------");
+		System.out.println("Maç sona erdi.");
 		skorGoster();
 	}
 	
