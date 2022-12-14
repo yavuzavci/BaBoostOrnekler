@@ -4,6 +4,8 @@ import static com.bilgeadam.lesson026.futbolapp.utility.FutbolUtility.random;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
 
 public class Mac {
 	private long sure;	
@@ -79,6 +81,59 @@ public class Mac {
 		
 	}
 	
+	/**
+	 * Birbirinden farklı 4 futbolcu oluşturup kuyruk olarak geri döner.
+	 * @param takim -> Mevcut Takım
+	 * @return 4 boyutlu futbolcu kuyruğu
+	 */
+	public ArrayBlockingQueue<AktifFutbolcu> futbolculariAl(Takim takim) {
+		ArrayBlockingQueue<AktifFutbolcu> futbolcular = new ArrayBlockingQueue<>(4);
+		int i = futbolcular.remainingCapacity();
+		do {			
+			AktifFutbolcu f = takim.getFutbolcular().get(passKontrol(12));
+			if(!futbolcular.contains(f)) {
+				futbolcular.add(f);
+				i--;
+			}
+			else
+				continue;				
+		} while (i != 0);
+		return futbolcular;
+	}
+	
+	/**
+	 * {@code oyna} metodunun queue kullanılarak yapılmış hali
+	 * @param takim
+	 * @throws InterruptedException
+	 */
+	public void oyna2(Takim takim) throws InterruptedException {
+		Queue<AktifFutbolcu> futbolcular = futbolculariAl(takim);
+		AktifFutbolcu futbolcu = futbolcular.peek();// başlangıç değeri
+		while(!futbolcular.isEmpty()) {	
+			if(futbolcu.pasVer()) {
+				futbolcu = futbolcular.poll();
+				if(futbolcular.isEmpty())// son futbolcuya gelince gol vuruşu yaptır.
+					break;
+				AktifFutbolcu siradakiFutbolcu = futbolcular.peek();
+				System.out.println(takim.getAd() + " adlı takımdan " + futbolcu.getFormaNo() + 
+				 " nolu oyuncu " + siradakiFutbolcu.getFormaNo() + " pas atıyor");
+				Thread.sleep(1500L);
+			}
+			else {
+				System.out.println(takim.getAd() + " adlı takımdan " + futbolcu.getFormaNo()
+						+ " nolu oyuncunun pası başarısız oldu !!! 	");
+				takim = takimDegistir(takim);
+				futbolcular = futbolculariAl(takim);
+				System.out.println("Top " + takim.getAd() + " takımına geçti !!! ");
+				Thread.sleep(1500);
+			}			
+		}
+		System.out.println(takim.getAd() + " adlı takım gol vuruşu yapıyor");
+		golVurusu(futbolcu, takim);
+		takim = takimDegistir(takim);
+	}		
+		
+	
 	public void oyna(Takim takim) throws InterruptedException {
 		int index = passKontrol(12);
 		
@@ -152,7 +207,7 @@ public class Mac {
 		
 		while(sure > System.currentTimeMillis()) {
 			if(sure == System.currentTimeMillis()) break;
-			oyna(takim);
+			oyna2(takim);
 			takim = takimDegistir(takim);
 			System.out.println((sure - System.currentTimeMillis()) / 1000 + " saniye kaldı");			
 		}
