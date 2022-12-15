@@ -2,7 +2,12 @@ package com.bilgeadam.lesson027;
 
 import java.util.Random;
 import java.util.Stack;
-
+/*
+ * Rastgele 1 ya da 2 gelecek bir seçim üreteceğiz
+ * sonra bu seçime göre metotta bir işlem seçtireceğiz
+ * 1 gelmişse temizle
+ * 2 gelmişse kullan metodu çalışsın
+ */
 public class TabakManager {
 	
 	private Stack<Tabak> temizler;
@@ -52,8 +57,11 @@ public class TabakManager {
 			kirliler.push(tabak);
 			System.out.println(tabak.getId() + " ID li tabak kullanılmıştır.");
 		}
-		else
+		else {
 			System.out.println("Temiz tabak kalmamıştır.");
+			temizle();
+		}
+			
 	}
 	
 	public void temizle() {
@@ -63,7 +71,23 @@ public class TabakManager {
 			temizler.push(tabak);
 			System.out.println(tabak.getId() + " ID li tabak temizlenmiştir.");
 		}
-		else
+		else {
 			System.out.println("Kirli tabak kalmamıştır.");
+			kullan();
+		}
+			
+	}
+	
+	public void rastgeleCalistir(int secim) {		
+		switch(secim) {
+			case 1: 
+				temizle();
+				break;
+			case 2:
+				kullan();
+				break;
+			default:
+				break;
+		}
 	}
 }

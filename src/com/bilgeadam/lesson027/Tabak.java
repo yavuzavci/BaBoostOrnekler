@@ -13,6 +13,10 @@ public class Tabak {
 	private int id;
 	private boolean kirliMi;
 	
+	public Tabak() {
+		
+	}
+	
 	public Tabak(int id, boolean kirliMi) {
 		this.id = id;
 		this.kirliMi = kirliMi;
