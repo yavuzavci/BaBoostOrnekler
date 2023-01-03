@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 /*
@@ -42,6 +43,8 @@ public class Sepet {
 		urunler = new ArrayList<Urun>();
 		urunFiyatMap = new HashMap<String,Double>();
 		sepet = new HashMap<String,Integer>();
+		urunOlustur();
+		urunFiyatMapOlustur();
 	}
 
 	public List<Urun> getUrunler() {
@@ -74,11 +77,14 @@ public class Sepet {
 				.collect(Collectors.toMap(Urun::getIsim, Urun::getFiyat));
 	}
 	
-	public void urunIsmiyleSepeteUrunEkle(String isim) {
-		if(!sepet.containsKey(isim))
-			sepet.put(isim, 1);
+	public void urunEkle() {
+		System.out.println("Eklemek istediğiniz ürün adını giriniz");
+		Scanner scanner = new Scanner(System.in);
+		String urunAdi = scanner.nextLine();
+		if(!sepet.containsKey(urunAdi))
+			sepet.put(urunAdi, 1);
 		else
-			sepet.put(isim, sepet.get(isim) + 1);
+			sepet.put(urunAdi, sepet.get(urunAdi) + 1);
 	}
 	
 	public void sepetinToplamTutariniBul() {
@@ -89,4 +95,43 @@ public class Sepet {
         System.out.println("Sepetin toplam fiyatı -> " + toplam2);
 	}
 	
+	public void urunleriListele() {
+		urunFiyatMap.forEach((k,v) -> System.out.println(k+"="+v));
+	}
+	
+	public void menu() {
+		int kontrol = 0;
+		Scanner scanner = new Scanner(System.in);
+		
+		do {
+			System.out.println("--------");
+			System.out.println("1- UrunListesi göster");
+			System.out.println("2- Ürün ekle");
+			System.out.println("3- Sepeti göster");
+			System.out.println("--------");
+			System.out.println("Lütfen bir işlem seçiniz");
+			kontrol = scanner.nextInt();
+			switch(kontrol) {
+				case 1:
+					urunleriListele();
+					break;
+				case 2:
+					urunEkle();
+					break;
+				case 3:
+					sepetiGoster();
+					break;
+				case 0:
+					break;
+				default:
+					break;
+			}
+		} while (kontrol != 0);
+		scanner.close();
+	}
+	
+	public void sepetiGoster() {
+		sepet.forEach((k,v) -> System.out.println(k+"="+v));
+		sepetinToplamTutariniBul();
+	}
 }
