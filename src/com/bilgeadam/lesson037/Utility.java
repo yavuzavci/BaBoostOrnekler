@@ -24,7 +24,7 @@ public class Utility {
 
 	public static int intDegerAlma() {		
 		boolean kontrol = false;
-		int sayi = Integer.MIN_VALUE;
+		Integer sayi = Integer.MIN_VALUE;
 		do {
 			try {
 				sayi = Integer.parseInt(
