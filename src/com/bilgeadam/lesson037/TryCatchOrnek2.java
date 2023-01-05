@@ -18,10 +18,10 @@ public class TryCatchOrnek2 {
 	public static void main(String[] args) {
 		String[] array = { "a", "10", "bc", null, "20" };
 		try {
-			// dizindekiDeger(array);
-			// topla(array);
-			System.out.println("Tarih -> " + 
-					Utility.tarihAl());
+			//dizindekiDeger(array);
+			//topla(array);
+			//System.out.println("Tarih -> " + Utility.tarihAl());
+			System.out.println("Sayı -> " + Utility.intDegerAlma());
 		}
 		catch(InputMismatchException ime) {
 			System.out.println("Hata: Sayı girmediniz");

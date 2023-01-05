@@ -22,9 +22,25 @@ public class Utility {
 		return scanner.nextLine();
 	}
 
-	public static int intDegerAlma(String sorgu) {
-		System.out.println(sorgu);
-		return Integer.parseInt(scanner.nextLine());
+	public static int intDegerAlma() {		
+		boolean kontrol = false;
+		int sayi = Integer.MIN_VALUE;
+		do {
+			try {
+				sayi = Integer.parseInt(
+						stringDegerAlma("Lütfen bir tam sayı giriniz"));
+				kontrol = false;
+			} catch (NumberFormatException e) {
+				System.out.println(e.toString());
+				System.out.println("Tam sayı girmediniz veya "
+						+ Integer.MIN_VALUE + " ile " + Integer.MAX_VALUE
+						+ " sınırlarını aşan tam sayı değeri girdiniz.\n"
+						+ "Lütfen küsüratsız tam sayı giriniz.");
+				kontrol = true;
+			}
+		} while (kontrol);
+		
+		return sayi;
 	}
 
 	public static int randomSayiUret(int baslangic, int bitis) {
