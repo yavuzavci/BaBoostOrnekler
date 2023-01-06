@@ -14,4 +14,8 @@ public class LimanAppException extends RuntimeException {
 		this.errorType = errorType;
 	}
 
+	public ErrorType getErrorType() {
+		return errorType;
+	}	
+
 }
