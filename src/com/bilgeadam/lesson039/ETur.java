@@ -1,0 +1,5 @@
+package com.bilgeadam.lesson039;
+
+public enum ETur {
+	KOMEDI, AKSIYON, GERİLİM, KORKU, DRAMA, ROMANTIKKOMEDİ, BILIMKURGU, FANTASTIK, KARAMIZAH, ANIMASYON, ANIME;
+}
