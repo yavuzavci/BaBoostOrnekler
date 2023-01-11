@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 /*
@@ -37,8 +39,18 @@ public class FileIslemler {
 	
 	public static void main(String[] args) {
 		dosyaOlustur();
-		veriGir();
-		veriOku();
+		// veriGir();
+		// veriOku();
+		// harfDegistir(veriOku());
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		dosyaSil2(FileSabitler.path);
 	}
 
 	public static void dosyaOlustur() {
@@ -60,27 +72,92 @@ public class FileIslemler {
 		System.out.println("Lütfen bir ifade girin.");
 		String ifade = scanner.nextLine();
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(FileSabitler.file,true));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(FileSabitler.file, true));
 			writer.write(ifade);
 			writer.flush();
-			System.out.println(ifade + " başarıyla " + FileSabitler.file.getName()+ " dosyasına yazdırıldı.");
+			System.out.println(ifade + " başarıyla " + FileSabitler.file.getName() + " dosyasına yazdırıldı.");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public static void veriOku() {
+	public static String veriOku() {
+		String tumMetin = "";
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(FileSabitler.file));
 			System.out.println(FileSabitler.file.getName() + " dosyasının içindeki veriler...: ");
 			String deger;
 			while((deger = reader.readLine()) != null) {
-				System.out.println(deger);
+				tumMetin += deger + "\n";
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		return tumMetin;
+	}
+	
+	public static void harfDegistir(String metin) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Lütfen değiştirmek istediğiniz harfi giriniz");
+		char eskiHarf = scanner.nextLine().charAt(0);
+		System.out.println("Lütfen yeni harfi giriniz");
+		char yeniHarf = scanner.nextLine().charAt(0);
+		metin = metin.replace(eskiHarf, yeniHarf);
+		dosyayaVeriEkle(metin);
+	}
+	
+	public static void dosyayaVeriEkle(String metin) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Metin dosyaya eklenerek mi yazılsın (E/H)");
+		boolean kontrol = false;
+		
+		if(scanner.nextLine().equalsIgnoreCase("e"))
+			kontrol = true;
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(FileSabitler.file,kontrol));
+			writer.write(metin + "\n");
+			writer.flush();
+			System.out.println(metin + " başarıyla " + FileSabitler.file.getName()+ " dosyasına eklendi.");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void dosyaSil(File file) {
+		if(file.exists()) {
+			System.out.println("Dosyanız siliniyor.");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			file.delete();
+			System.out.println(file.getName() + " adlı dosyanız silindi.");
+		}
+		else
+			System.out.println("Böyle bir dosya bulunamadı.");
+	}
+	
+	public static void dosyaSil2(Path path) {
+		try {
+			if(Files.deleteIfExists(path)) {
+				System.out.println("Dosyanız siliniyor.");
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				System.out.println("Dosyanız silindi.");
+			}
+			else
+				System.out.println("Böyle bir dosya bulunamadı.");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 	}
 	
 }
