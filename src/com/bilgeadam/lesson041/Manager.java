@@ -3,9 +3,13 @@ package com.bilgeadam.lesson041;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +37,7 @@ public class Manager {
 		dosyadanOgrencileriOkuVeKonsolaYazdir(FileSabitler.ogrfile);
 	}
 	
-	private static void isimleOgrenciOku(File file) {
+	public static void isimleOgrenciOku(File file) {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			List<String> ogrenciBilgiler;
@@ -51,7 +55,7 @@ public class Manager {
 		}
 	}
 	
-	private static void isimleVeNotlarlaOgrenciOku(File file) {
+	public static void isimleVeNotlarlaOgrenciOku(File file) {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			List<String> ogrenciBilgiler;
@@ -70,7 +74,7 @@ public class Manager {
 		}
 	}
 	
-	private static double notOrtalamasiniBul(List<String> list) {
+	public static double notOrtalamasiniBul(List<String> list) {
 		return list.subList(1, list.size())
 				.stream()
 				.collect(Collectors.averagingDouble(not -> Double.parseDouble(not)));
@@ -79,7 +83,7 @@ public class Manager {
 	/**
 	 * Dosyaya yazarken küsürat olmayacak.
 	 */
-	private static List<Integer> ogrenciNotlariniAl() {
+	public static List<Integer> ogrenciNotlariniAl() {
 		Scanner scanner = new Scanner(System.in);
 		List<Integer> notListesi = new ArrayList<>();
 		try {
@@ -98,7 +102,7 @@ public class Manager {
 		return notListesi;
 	}
 	
-	private static String ogrenciBilgileriniAl() {
+	public static String ogrenciBilgileriniAl() {
 		String ogrenciBilgileri = "";
 		Scanner scanner = new Scanner(System.in);
 		
@@ -113,7 +117,7 @@ public class Manager {
 		return ogrenciBilgileri;
 	}
 	
-	private static void dosyayaOgrencileriYaz(File file) {
+	public static void dosyayaOgrencileriYaz(File file) {
 		String ogrenci = "";
 		FileWriter fileWriter = null;
 		Scanner scanner = new Scanner(System.in);
@@ -144,7 +148,61 @@ public class Manager {
 		}
 	}
 	
-	private static void dosyadanOgrencileriOkuVeKonsolaYazdir(File file) {
+	public static void dosyayaSerilestirilmisOgrencileriYaz() {
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("D:/$Java6Dosya/ogrenciseri.txt"));
+            ogrenciListesi.forEach(x -> {
+                try {
+                    oos.writeObject(x);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            });
+        } catch (Exception e) {
+
+        }
+    }
+	
+	public static void dosyayaSerilestirilmisOgrencileriYaz2() {
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("D:/$Java6Dosya/ogrenciseri2.txt"));
+            oos.writeObject(ogrenciListesi);
+        } catch (Exception e) {
+
+        }
+    }
+	
+	public static void dosyadanSerilestirilmisOgrencileriOku() {
+		File file = new File("D:/$Java6Dosya/ogrenciseri2.txt");
+		try {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+			Ogrenci ogrenci;
+
+//            while (file.length() != 0) {
+//                System.out.println("===>" + ois.readObject());
+//
+//            }
+			while ((ogrenci = (Ogrenci) ois.readObject()) != null) {
+				System.out.println("===>" + ogrenci);
+			}
+		} catch (Exception e) {
+			System.out.println("Dosya sonuna gelindi");
+		}
+	}
+	
+	public static void dosyadanSerilestirilmisOgrencileriOku2() {
+		File file = new File("D:/$Java6Dosya/ogrenciseri2.txt");
+		try {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+			List<Ogrenci> ogrenciler = (List<Ogrenci>) ois.readObject();
+			ogrenciler.forEach(System.out::println);
+		} catch (Exception e) {
+			System.out.println("Dosya sonuna gelindi");
+		}
+	}
+	
+	public static void dosyadanOgrencileriOkuVeKonsolaYazdir(File file) {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			List<String> ogrenciBilgiler;
