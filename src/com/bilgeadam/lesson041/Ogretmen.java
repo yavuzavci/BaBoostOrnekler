@@ -1,4 +1,13 @@
 package com.bilgeadam.lesson041;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /*
  * ogretmen sınıfını thread yapalım
  * 
@@ -20,23 +29,45 @@ package com.bilgeadam.lesson041;
  */
 public class Ogretmen extends Thread {
 
-	String isim;
+	private String isim;
+	private List<Ogrenci> ogrenciListesi;
+	private BufferedReader bufferedReader;
 	
-	public Ogretmen(String isim) {
+	public Ogretmen(String isim, BufferedReader bufferedReader) {
 		this.isim = isim;
+		this.bufferedReader = bufferedReader;
+		ogrenciListesi = new ArrayList<>();
+	}
+	
+	public String getIsim() {
+		return isim;
+	}
+	
+	public void setIsim(String isim) {
+		this.isim = isim;
+	}
+	
+	public List<Ogrenci> getOgrenciListesi() {
+		return ogrenciListesi;
+	}
+	
+	public void setOgrenciListesi(List<Ogrenci> ogrenciListesi) {
+		this.ogrenciListesi = ogrenciListesi;
 	}
 	
 	@Override
 	public void run() {
-		
-		for (int i = 0; i < 10; i++) {
-			System.out.println(isim + " -----> " + (i + 1) + ". öğrencinin notlarını okudu");
-			try {
-				sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		try {
+			String line;
+			while((line = bufferedReader.readLine()) != null) {
+				String[] array = line.split(",");
+				double ort = Manager.notOrtalamasiniBul(Arrays.asList(array));
+				Ogrenci ogrenci = new Ogrenci(array[0],ort);
+				ogrenciListesi.add(ogrenci);
+				System.out.println(isim + " ====> " + ogrenci.getIsim() + " adlı öğrenciyi ekledi");
 			}
+		} catch (Exception e) {			
+			e.printStackTrace();
 		}
 	}
 	
