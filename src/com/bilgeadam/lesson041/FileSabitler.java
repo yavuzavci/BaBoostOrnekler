@@ -5,4 +5,5 @@ import java.nio.file.Path;
 
 public class FileSabitler {
 	public static File file = new File("D:/$Java6Dosya/ogrenci.txt");
+	public static File ogrfile = new File("D:/$Java6Dosya/ogrencidosyasi.txt");
 }
