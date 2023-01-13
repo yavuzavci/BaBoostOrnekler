@@ -1,5 +1,8 @@
 package com.bilgeadam.lesson042.yuzmetreyaris;
 
+import java.util.Comparator;
+import java.util.List;
+
 public class YuzMetreYaris {
 	
 	public static void main(String[] args) {
@@ -10,6 +13,7 @@ public class YuzMetreYaris {
 		Kosucu kosucu3 = new Kosucu("Cem", baslangicZamani);
 		Kosucu kosucu4 = new Kosucu("Deniz", baslangicZamani);
 		Kosucu kosucu5 = new Kosucu("Emre", baslangicZamani);
+		List<Kosucu> kosucular = List.of(kosucu1,kosucu2,kosucu3,kosucu4,kosucu5);
 		
 		Thread thread1 = new Thread(kosucu1);
 		Thread thread2 = new Thread(kosucu2);
@@ -33,6 +37,13 @@ public class YuzMetreYaris {
 		} catch (InterruptedException e) {
 			
 		}
+		System.out.println("============= Yüz Metre Koşu Sonuçları ================");
+		//kosucular.forEach(System.out::println);
+		//Map<Long, List<Kosucu>> map = kosucular.stream().collect(Collectors.groupingBy(Kosucu::getSure,TreeMap::new,Collectors.toList()));
+		
+		//map.forEach((k,v) -> System.out.println(k + " ---> " + v));
+		
+		kosucular.stream().sorted(Comparator.comparingLong(x -> x.getSure())).forEach(System.out::println);
 	}
 	
 }

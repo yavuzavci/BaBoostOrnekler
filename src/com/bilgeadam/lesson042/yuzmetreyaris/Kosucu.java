@@ -52,6 +52,14 @@ public class Kosucu implements Runnable {
 
 	public void setMesafe(int mesafe) {
 		this.mesafe = mesafe;
+	}	
+
+	public long getSure() {
+		return sure;
+	}
+
+	public void setSure(long sure) {
+		this.sure = sure;
 	}
 
 	@Override
@@ -63,10 +71,10 @@ public class Kosucu implements Runnable {
 				
 				if(mesafe % 10 == 0)
 					System.out.println(isim + " ===> " + mesafe + ". metrede");
-				Thread.sleep(beklemeSuresi);
+				Thread.sleep(50);
 			}
 			long end = System.currentTimeMillis();
-			long sure = end - baslangicZamani;
+			sure = end - baslangicZamani;
 			System.out.println(isim + " adlı koşucu " + mesafe + " metreyi " + sure + " milisaniyede koştu.");
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
