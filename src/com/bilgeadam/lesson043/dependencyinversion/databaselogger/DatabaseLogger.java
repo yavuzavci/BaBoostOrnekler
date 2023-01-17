@@ -2,14 +2,15 @@ package com.bilgeadam.lesson043.dependencyinversion.databaselogger;
 
 public class DatabaseLogger {
 	
-	public void logToPostgre() {
-		PostgreLogger postgreLogger2 = new PostgreLogger();
-		postgreLogger2.log();
+	ILogger logger;
+
+	public DatabaseLogger(ILogger logger) {
+		super();
+		this.logger = logger;
 	}
 	
-	public void logToMongo() {
-		MongoLogger mongoLogger = new MongoLogger();
-		mongoLogger.log();
+	public void log(String exception) {
+		logger.log(exception);
 	}
 	
 }

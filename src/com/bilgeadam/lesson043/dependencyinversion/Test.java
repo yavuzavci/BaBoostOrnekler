@@ -1,7 +1,7 @@
 package com.bilgeadam.lesson043.dependencyinversion;
 
 import com.bilgeadam.lesson043.dependencyinversion.databaselogger.DatabaseLogger;
-import com.bilgeadam.lesson043.dependencyinversion.databaselogger.DatabaseLogger2;
+import com.bilgeadam.lesson043.dependencyinversion.databaselogger.DatabaseLogger;
 import com.bilgeadam.lesson043.dependencyinversion.databaselogger.MongoLogger;
 import com.bilgeadam.lesson043.dependencyinversion.databaselogger.PostgreLogger;
 import com.bilgeadam.lesson043.dependencyinversion.exception.StoryException;
@@ -16,18 +16,9 @@ public class Test {
 			whatsapp.hikayePaylas();
 			whatsapp.videoKonferansYap();
 		} catch (StoryException e) {
-			new DatabaseLogger().logToPostgre();
+			new DatabaseLogger(new PostgreLogger()).log(e.getMessage());
 		} catch (VideoException e) {
-			new DatabaseLogger().logToMongo();
-		}
-		
-		try {
-			whatsapp.hikayePaylas();
-			whatsapp.videoKonferansYap();
-		} catch (StoryException e) {
-			new DatabaseLogger2(new PostgreLogger()).log();
-		} catch (VideoException e) {
-			new DatabaseLogger2(new MongoLogger()).log();
+			new DatabaseLogger(new MongoLogger()).log(e.getMessage());
 		}
 	
 	}
